@@ -73,6 +73,27 @@ public class ParkingLotTest {
         assertNull(fetchedCar1);
     }
 
+    @Test
+    void should_return_nothing_when_fetch_given_full_parking_slot(){
+        //Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket1 = parkingLot.park(car);
+        Ticket ticket2 = parkingLot.park(car);
+        Ticket ticket3 = parkingLot.park(car);
+        Ticket ticket4 = parkingLot.park(car);
+        Ticket ticket5 = parkingLot.park(car);
+        Ticket ticket6 = parkingLot.park(car);
+        Ticket ticket7 = parkingLot.park(car);
+        Ticket ticket8 = parkingLot.park(car);
+        Ticket ticket9 = parkingLot.park(car);
+        Ticket ticket10 = parkingLot.park(car);
+        //When
+        Ticket ticket11 = parkingLot.park(car);
+        //Then
+        assertNull(ticket11);
+    }
+
 
 
 

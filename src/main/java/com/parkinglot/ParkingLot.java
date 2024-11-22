@@ -15,6 +15,7 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
+        if(ticket == null) return null;
         if(ticket.isUsed()) return null;
         ticket.setUsed(true);
         return ticketToCar.get(ticket);
