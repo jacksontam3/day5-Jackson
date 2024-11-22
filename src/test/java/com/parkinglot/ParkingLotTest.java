@@ -1,10 +1,21 @@
 package com.parkinglot;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setup() {
+        System.setOut(new PrintStream(outContent));
+    }
 
     @Test
     void should_return_ticket_when_park_given_a_car() {
@@ -20,7 +31,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_the_car_when_fetch_given_a_ticket() {
+    void should_return_the_car_when_fetch_given_a_ticket() throws Exception {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -32,7 +43,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_two_cars_when_fetch_given_two_tickets() {
+    void should_return_two_cars_when_fetch_given_two_tickets() throws Exception {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car1 = new Car();
@@ -48,20 +59,20 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_given_wrong_parking_ticket(){
+    void should_return_error_message_when_fetch_given_wrong_parking_ticket() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         Ticket ticket1 = new Ticket();
         //When
-        Car fetchedCar = parkingLot.fetch(ticket1);
+        Exception exception = assertThrows(Exception.class,() -> parkingLot.fetch(ticket1));
         //Then
-        assertNull(fetchedCar);
+        assertEquals("Unrecognized parking ticket", exception.getMessage());
     }
 
     @Test
-    void should__return_nothing_when_fetch_given_used_parking_ticket(){
+    void should__return_nothing_when_fetch_given_used_parking_ticket() throws Exception {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -93,8 +104,6 @@ public class ParkingLotTest {
         //Then
         assertNull(ticket11);
     }
-
-
 
 
 }

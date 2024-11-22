@@ -14,9 +14,20 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) {
-        if(ticket == null) return null;
-        if(ticket.isUsed()) return null;
+    public void validateTicket(Ticket ticket) throws Exception {
+        if(ticket == null) {
+            throw new Exception("Unrecognized parking ticket");
+        }
+        if(ticket.isUsed()) {
+            throw new Exception("Unrecognized parking ticket");
+        }
+    }
+
+    public Car fetch(Ticket ticket) throws Exception {
+        validateTicket(ticket);
+        if(!ticketToCar.containsKey(ticket)) {
+            throw new Exception("Unrecognized parking ticket");
+        }
         ticket.setUsed(true);
         return ticketToCar.get(ticket);
     }
