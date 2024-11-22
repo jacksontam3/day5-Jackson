@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
 
+    public static final String NO_AVAILABLE_POSITION = "No available position";
+    public static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket";
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach
@@ -68,7 +70,7 @@ public class ParkingLotTest {
         //When
         Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingLot.fetch(ticket1));
         //Then
-        assertEquals("Unrecognized parking ticket", exception.getMessage());
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
     }
 
     @Test
@@ -81,7 +83,7 @@ public class ParkingLotTest {
         //When
         Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingLot.fetch(ticket));
         //Then
-        assertEquals("Unrecognized parking ticket", exception.getMessage());
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
     }
 
     @Test
@@ -102,7 +104,7 @@ public class ParkingLotTest {
         //When
         Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingLot.park(car));
         //Then
-        assertEquals("No available position", exception.getMessage());
+        assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
     }
 
 
