@@ -48,8 +48,8 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Car car1 = new Car();
         Car car2 = new Car();
-        Ticket ticket1 =  parkingLot.park(car1);
-        Ticket ticket2 =  parkingLot.park(car2);
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
         //When
         Car fetchedCar1 = parkingLot.fetch(ticket1);
         Car fetchedCar2 = parkingLot.fetch(ticket2);
@@ -66,7 +66,7 @@ public class ParkingLotTest {
         Ticket ticket = parkingLot.park(car);
         Ticket ticket1 = new Ticket();
         //When
-        Exception exception = assertThrows(Exception.class,() -> parkingLot.fetch(ticket1));
+        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingLot.fetch(ticket1));
         //Then
         assertEquals("Unrecognized parking ticket", exception.getMessage());
     }
@@ -79,13 +79,13 @@ public class ParkingLotTest {
         Ticket ticket = parkingLot.park(car);
         Car fetchedCar = parkingLot.fetch(ticket);
         //When
-        Exception exception = assertThrows(Exception.class,() ->  parkingLot.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingLot.fetch(ticket));
         //Then
         assertEquals("Unrecognized parking ticket", exception.getMessage());
     }
 
     @Test
-    void should_return_nothing_when_fetch_given_full_parking_slot(){
+    void should_return_nothing_when_fetch_given_full_parking_slot() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();

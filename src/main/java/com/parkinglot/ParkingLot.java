@@ -9,25 +9,25 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
-        if(ticketToCar.size()==10) return null;
+        if (ticketToCar.size() == 10) return null;
         ticketToCar.put(ticket, car);
         return ticket;
     }
 
     public void validateTicket(Ticket ticket) throws Exception {
-        if(ticket == null) {
-            throw new Exception("Unrecognized parking ticket");
+        if (ticket == null) {
+            throw new UnrecognizedParkingTickerException();
         }
-        if(ticket.isUsed()) {
-            throw new Exception("Unrecognized parking ticket");
+        if (ticket.isUsed()) {
+            throw new UnrecognizedParkingTickerException();
+        }
+        if (!ticketToCar.containsKey(ticket)) {
+            throw new UnrecognizedParkingTickerException();
         }
     }
 
     public Car fetch(Ticket ticket) throws Exception {
         validateTicket(ticket);
-        if(!ticketToCar.containsKey(ticket)) {
-            throw new Exception("Unrecognized parking ticket");
-        }
         ticket.setUsed(true);
         return ticketToCar.get(ticket);
     }
