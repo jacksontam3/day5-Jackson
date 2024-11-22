@@ -2,6 +2,7 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import static com.parkinglot.ParkingLotTest.NO_AVAILABLE_POSITION;
 import static com.parkinglot.ParkingLotTest.UNRECOGNIZED_PARKING_TICKET;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,6 +71,27 @@ public class ParkingBoyTest {
         Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingBoy.fetch(ticket));
         //Then
         assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
+    }
+
+    @Test
+    void should_return_nothing_when_fetch_given_full_parking_slot() {
+        //Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket1 = parkingBoy.park(car);
+        Ticket ticket2 = parkingBoy.park(car);
+        Ticket ticket3 = parkingBoy.park(car);
+        Ticket ticket4 = parkingBoy.park(car);
+        Ticket ticket5 = parkingBoy.park(car);
+        Ticket ticket6 = parkingBoy.park(car);
+        Ticket ticket7 = parkingBoy.park(car);
+        Ticket ticket8 = parkingBoy.park(car);
+        Ticket ticket9 = parkingBoy.park(car);
+//When
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(car));
+        //Then
+        assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
     }
 
 
