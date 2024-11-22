@@ -9,7 +9,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
-        if (ticketToCar.size() == 10) return null;
+        if (ticketToCar.size() == 10) throw new NoAvailablePositionException();
         ticketToCar.put(ticket, car);
         return ticket;
     }
