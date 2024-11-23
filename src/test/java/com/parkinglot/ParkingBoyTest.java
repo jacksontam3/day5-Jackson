@@ -143,5 +143,27 @@ public class ParkingBoyTest {
         assertEquals(10, parkingLot2.getRemainingCapacity());
     }
 
+    @Test
+    void should_park_in_parking_lot_with_largest_available_position_rate_when_using_super_smart_strategy() throws Exception {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
+
+        // Park a car to parking lot 1 first
+        parkingLot1.park(new Car());
+
+        // When
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+
+        // Then
+        assertEquals(9, parkingLot2.getRemainingCapacity());
+        assertEquals(9, parkingLot1.getRemainingCapacity());
+
+    }
+
+
+
 
 }
