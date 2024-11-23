@@ -91,27 +91,20 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_given_full_parking_slot() {
-        //Given
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(1);
+    void should_throw_exception_when_park_given_full_parking_lots_with_capacity_10() {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
 
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
-        Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
-        Ticket ticket1 = parkingBoy.park(car);
-        Ticket ticket2 = parkingBoy.park(car);
-        Ticket ticket3 = parkingBoy.park(car);
-        Ticket ticket4 = parkingBoy.park(car);
-        Ticket ticket5 = parkingBoy.park(car);
-        Ticket ticket6 = parkingBoy.park(car);
-        Ticket ticket7 = parkingBoy.park(car);
-        Ticket ticket8 = parkingBoy.park(car);
-        Ticket ticket9 = parkingBoy.park(car);
-//When
-        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(car));
-        //Then
-        assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
+
+        for (int i = 0; i < 20; i++) {
+            parkingBoy.park(new Car());
+        }
+
+        // When & Then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(new Car()));
+        assertEquals("No available position", exception.getMessage());
     }
 
     @Test
