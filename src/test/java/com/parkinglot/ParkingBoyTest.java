@@ -127,5 +127,25 @@ public class ParkingBoyTest {
         assertEquals(carInSecondLot, parkingBoy.fetch(ticketForSecondLot));
     }
 
+    @Test
+    void should_park_in_parking_lot_with_more_empty_positions() throws Exception {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+
+        // When
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+
+        // Then
+        assertEquals(9, parkingLot2.getRemainingCapacity());
+        assertEquals(8, parkingLot1.getRemainingCapacity());
+        assertEquals(car, parkingBoy.fetch(ticket));
+    }
+
 
 }
