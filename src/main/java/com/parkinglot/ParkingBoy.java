@@ -19,16 +19,14 @@ public class ParkingBoy {
                 .filter(ParkingLot::hasAvailablePosition)
                 .max((lot1, lot2) -> Integer.compare(lot1.getRemainingCapacity(), lot2.getRemainingCapacity()))
                 .orElseThrow(NoAvailablePositionException::new);
-        
+
         return targetParkingLot.park(car);
     }
 
     public Car fetch(Ticket ticket) throws Exception {
         for (ParkingLot parkingLot : parkingLots) {
-            try {
+            if (parkingLot.hasTicket(ticket)) {
                 return parkingLot.fetch(ticket);
-            } catch (UnrecognizedParkingTickerException e) {
-
             }
         }
         throw new UnrecognizedParkingTickerException();
