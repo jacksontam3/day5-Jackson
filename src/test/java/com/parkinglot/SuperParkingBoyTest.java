@@ -26,7 +26,7 @@ public class SuperParkingBoyTest {
     }
 
     @Test
-    void should_park_in_parking_lot_with_larger_available_position_rate() throws Exception {
+    void should_park_in_parking_lot_with_larger_available_position_rate_when_parking_given_two_parking_lot() throws Exception {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
