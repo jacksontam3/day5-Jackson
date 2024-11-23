@@ -22,7 +22,7 @@ public class ParkingLotTest {
     @Test
     void should_return_ticket_when_park_given_a_car() {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
         //When
         Ticket ticket = parkingLot.park(car);
@@ -35,7 +35,7 @@ public class ParkingLotTest {
     @Test
     void should_return_the_car_when_fetch_given_a_ticket() throws Exception {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         //When
@@ -47,7 +47,7 @@ public class ParkingLotTest {
     @Test
     void should_return_two_cars_when_fetch_given_two_tickets() throws Exception {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car1 = new Car();
         Car car2 = new Car();
         Ticket ticket1 = parkingLot.park(car1);
@@ -63,7 +63,7 @@ public class ParkingLotTest {
     @Test
     void should_return_error_message_when_fetch_given_wrong_parking_ticket() {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         Ticket ticket1 = new Ticket();
@@ -76,7 +76,7 @@ public class ParkingLotTest {
     @Test
     void should_return_nothing_when_fetch_given_used_parking_ticket() throws Exception {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         Car fetchedCar = parkingLot.fetch(ticket);
@@ -89,7 +89,7 @@ public class ParkingLotTest {
     @Test
     void should_return_nothing_when_fetch_given_full_parking_slot() {
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
         Ticket ticket1 = parkingLot.park(car);
         Ticket ticket2 = parkingLot.park(car);
