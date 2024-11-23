@@ -6,39 +6,43 @@ import java.util.Map;
 public class ParkingLot {
 
     private Map<Ticket, Car> ticketToCar = new HashMap<>();
+    private int capacity;
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
 
     public Ticket park(Car car) {
-        Ticket ticket = new Ticket();
-        if (ticketToCar.size() == 10) {
+        if (ticketToCar.size() >= capacity) {
             throw new NoAvailablePositionException();
         }
+        Ticket ticket = new Ticket();
         ticketToCar.put(ticket, car);
         return ticket;
     }
 
-    public void validateTicket(Ticket ticket) throws Exception {
-        if (ticket == null) {
-            throw new UnrecognizedParkingTickerException();
-        }
-        if (ticket.isUsed()) {
-            throw new UnrecognizedParkingTickerException();
-        }
-        if (!ticketToCar.containsKey(ticket)) {
-            throw new UnrecognizedParkingTickerException();
-        }
+    public boolean hasAvailablePosition() {
+        return ticketToCar.size() < capacity;
     }
 
     public Car fetch(Ticket ticket) throws Exception {
         validateTicket(ticket);
         ticket.setUsed(true);
-        return ticketToCar.get(ticket);
+        return ticketToCar.remove(ticket);
     }
 
-    public Map<Ticket, Car> getTicketToCar() {
-        return ticketToCar;
+    public void validateTicket(Ticket ticket) throws Exception {
+        if (ticket == null || ticket.isUsed() || !ticketToCar.containsKey(ticket)) {
+            throw new UnrecognizedParkingTickerException();
+        }
     }
 
-    public void setTicketToCar(Map<Ticket, Car> ticketToCar) {
-        this.ticketToCar = ticketToCar;
+
+    @Override
+    public String toString() {
+        return "ParkingLot{" +
+                "capacity=" + capacity +
+                ", occupiedSpaces=" + ticketToCar.size() +
+                '}';
     }
 }
