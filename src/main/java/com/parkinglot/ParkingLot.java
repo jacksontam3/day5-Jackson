@@ -25,6 +25,13 @@ public class ParkingLot {
         return getRemainingCapacity() > 0;
     }
 
+    public double getAvailablePositionRate() {
+        if (capacity == 0) {
+            return 0;
+        }
+        return (double) getRemainingCapacity() / capacity;
+    }
+
     public Car fetch(Ticket ticket) throws Exception {
         validateTicket(ticket);
         ticket.setUsed(true);
