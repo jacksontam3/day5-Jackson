@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static com.parkinglot.ParkingLotTest.NO_AVAILABLE_POSITION;
 import static com.parkinglot.ParkingLotTest.UNRECOGNIZED_PARKING_TICKET;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -96,6 +97,24 @@ public class SuperParkingBoyTest {
             superSmartParkingBoy.fetch(ticket);
         });
         assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
+    }
+
+    @Test
+    void should_return_error_when_all_parking_lots_are_full() {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
+        // When
+        superSmartParkingBoy.park(new Car());
+        superSmartParkingBoy.park(new Car());
+
+        // Then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> {
+            superSmartParkingBoy.park(new Car());
+        });
+        assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
     }
 
 
