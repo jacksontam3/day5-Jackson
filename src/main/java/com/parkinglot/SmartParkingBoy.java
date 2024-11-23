@@ -3,15 +3,10 @@ package com.parkinglot;
 import java.util.Comparator;
 import java.util.List;
 
-public class SmartParkingBoy {
-
-    private List<ParkingLot> parkingLots;
+public class SmartParkingBoy extends ParkingBoy {
 
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
-        if (parkingLots == null || parkingLots.isEmpty()) {
-            throw new IllegalArgumentException("Parking lots cannot be null or empty.");
-        }
-        this.parkingLots = parkingLots;
+        super(parkingLots);
     }
 
     public Ticket park(Car car) {
