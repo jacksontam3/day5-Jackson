@@ -16,7 +16,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
         // When
         Car car = new Car();
@@ -33,7 +33,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
         parkingLot1.park(new Car());
         parkingLot1.park(new Car());
@@ -53,7 +53,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
         // When
         Car car1 = new Car();
@@ -71,7 +71,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
         // When & Then
         Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> {
@@ -85,7 +85,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
 
         Car car = new Car();
@@ -104,7 +104,7 @@ public class SuperParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SuperParkingBoy superSmartParkingBoy = new SuperParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SuperParkingStrategy());
 
         // When
         superSmartParkingBoy.park(new Car());

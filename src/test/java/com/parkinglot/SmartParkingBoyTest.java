@@ -16,7 +16,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
         Car car = new Car();
         //When
         Ticket ticket = smartParkingBoy.park(car);
@@ -30,7 +30,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
         Car car = new Car();
         Ticket ticket = smartParkingBoy.park(car);
         //When
@@ -45,7 +45,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
         Car car = new Car();
         Ticket ticket = smartParkingBoy.park(car);
         Car car2 = new Car();
@@ -64,7 +64,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
         Car car = new Car();
         Ticket ticket = smartParkingBoy.park(car);
         Ticket ticket1 = new Ticket();
@@ -80,7 +80,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
         Car car = new Car();
         Ticket ticket = smartParkingBoy.park(car);
         Car fetchedCar = smartParkingBoy.fetch(ticket);
@@ -96,7 +96,7 @@ public class SmartParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
 
         for (int i = 0; i < 20; i++) {
             smartParkingBoy.park(new Car());
@@ -112,7 +112,7 @@ public class SmartParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
 
         for (int i = 0; i < 10; i++) {
             smartParkingBoy.park(new Car());
@@ -132,7 +132,7 @@ public class SmartParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
 
         smartParkingBoy.park(new Car());
         smartParkingBoy.park(new Car());
@@ -152,7 +152,7 @@ public class SmartParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
 
         // When
         Car car = new Car();
@@ -169,7 +169,7 @@ public class SmartParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
 
         // Park one car in each parking lot
         Car car1 = new Car();

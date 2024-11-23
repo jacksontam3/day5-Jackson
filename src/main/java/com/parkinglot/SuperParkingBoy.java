@@ -5,8 +5,8 @@ import java.util.List;
 
 public class SuperParkingBoy extends ParkingBoy {
 
-    public SuperParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
+    public SuperParkingBoy(List<ParkingLot> parkingLots, ParkingStrategy parkingStrategy) {
+        super(parkingLots,parkingStrategy);
     }
 
     @Override
