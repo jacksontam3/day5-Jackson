@@ -14,12 +14,13 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.hasAvailablePosition()) {
-                return parkingLot.park(car);
-            }
-        }
-        throw new NoAvailablePositionException();
+
+        ParkingLot targetParkingLot = parkingLots.stream()
+                .filter(ParkingLot::hasAvailablePosition)
+                .max((lot1, lot2) -> Integer.compare(lot1.getRemainingCapacity(), lot2.getRemainingCapacity()))
+                .orElseThrow(NoAvailablePositionException::new);
+        
+        return targetParkingLot.park(car);
     }
 
     public Car fetch(Ticket ticket) throws Exception {
