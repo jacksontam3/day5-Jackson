@@ -8,7 +8,7 @@ import static com.parkinglot.ParkingLotTest.NO_AVAILABLE_POSITION;
 import static com.parkinglot.ParkingLotTest.UNRECOGNIZED_PARKING_TICKET;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkingBoyTest {
+public class SmartParkingBoyTest {
 
     @Test
     void should_return_ticket_when_park_given_a_car_and_a_parking_lot(){
