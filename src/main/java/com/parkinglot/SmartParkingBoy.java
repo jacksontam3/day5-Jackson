@@ -2,11 +2,11 @@ package com.parkinglot;
 
 import java.util.List;
 
-public class ParkingBoy {
+public class SmartParkingBoy {
 
     private List<ParkingLot> parkingLots;
 
-    public ParkingBoy(List<ParkingLot> parkingLots) {
+    public SmartParkingBoy(List<ParkingLot> parkingLots) {
         if (parkingLots == null || parkingLots.isEmpty()) {
             throw new IllegalArgumentException("Parking lots cannot be null or empty.");
         }

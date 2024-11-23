@@ -16,10 +16,10 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car = new Car();
         //When
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
         //Then
         assertNotNull(ticket);
     }
@@ -30,11 +30,11 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
         //When
-        Car fetchedCar = parkingBoy.fetch(ticket);
+        Car fetchedCar = smartParkingBoy.fetch(ticket);
         //Then
         assertEquals(car, fetchedCar);
     }
@@ -45,14 +45,14 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
         Car car2 = new Car();
-        Ticket ticket2 = parkingBoy.park(car2);
+        Ticket ticket2 = smartParkingBoy.park(car2);
         //When
-        Car fetchedCar = parkingBoy.fetch(ticket);
-        Car fetchedCar2 = parkingBoy.fetch(ticket2);
+        Car fetchedCar = smartParkingBoy.fetch(ticket);
+        Car fetchedCar2 = smartParkingBoy.fetch(ticket2);
         //Then
         assertEquals(car, fetchedCar);
         assertEquals(car2, fetchedCar2);
@@ -64,12 +64,12 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
         Ticket ticket1 = new Ticket();
         //When
-        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingBoy.fetch(ticket1));
+        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> smartParkingBoy.fetch(ticket1));
         //Then
         assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
     }
@@ -80,12 +80,12 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
-        Car fetchedCar = parkingBoy.fetch(ticket);
+        Ticket ticket = smartParkingBoy.park(car);
+        Car fetchedCar = smartParkingBoy.fetch(ticket);
         //When
-        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> parkingBoy.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedParkingTickerException.class, () -> smartParkingBoy.fetch(ticket));
         //Then
         assertEquals(UNRECOGNIZED_PARKING_TICKET, exception.getMessage());
     }
@@ -96,14 +96,14 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         for (int i = 0; i < 20; i++) {
-            parkingBoy.park(new Car());
+            smartParkingBoy.park(new Car());
         }
 
         // When & Then
-        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(new Car()));
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> smartParkingBoy.park(new Car()));
         assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
     }
 
@@ -112,19 +112,19 @@ public class ParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         for (int i = 0; i < 10; i++) {
-            parkingBoy.park(new Car());
+            smartParkingBoy.park(new Car());
         }
 
         //When
         Car carInSecondLot = new Car();
-        Ticket ticketForSecondLot = parkingBoy.park(carInSecondLot);
+        Ticket ticketForSecondLot = smartParkingBoy.park(carInSecondLot);
 
         // Then
         assertNotNull(ticketForSecondLot);
-        assertEquals(carInSecondLot, parkingBoy.fetch(ticketForSecondLot));
+        assertEquals(carInSecondLot, smartParkingBoy.fetch(ticketForSecondLot));
     }
 
     @Test
@@ -132,19 +132,19 @@ public class ParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
-        parkingBoy.park(new Car());
-        parkingBoy.park(new Car());
+        smartParkingBoy.park(new Car());
+        smartParkingBoy.park(new Car());
 
         // When
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
 
         // Then
         assertEquals(9, parkingLot2.getRemainingCapacity());
         assertEquals(8, parkingLot1.getRemainingCapacity());
-        assertEquals(car, parkingBoy.fetch(ticket));
+        assertEquals(car, smartParkingBoy.fetch(ticket));
     }
 
     @Test
@@ -152,16 +152,16 @@ public class ParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         // When
         Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = smartParkingBoy.park(car);
 
         // Then
         assertEquals(9, parkingLot1.getRemainingCapacity());
         assertEquals(10, parkingLot2.getRemainingCapacity());
-        assertEquals(car, parkingBoy.fetch(ticket));
+        assertEquals(car, smartParkingBoy.fetch(ticket));
     }
 
     @Test
@@ -169,17 +169,17 @@ public class ParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         // Park one car in each parking lot
         Car car1 = new Car();
         Car car2 = new Car();
-        Ticket ticket1 = parkingBoy.park(car1);
-        Ticket ticket2 = parkingBoy.park(car2);
+        Ticket ticket1 = smartParkingBoy.park(car1);
+        Ticket ticket2 = smartParkingBoy.park(car2);
 
         // Then
-        assertEquals(car1, parkingBoy.fetch(ticket1));
-        assertEquals(car2, parkingBoy.fetch(ticket2));
+        assertEquals(car1, smartParkingBoy.fetch(ticket1));
+        assertEquals(car2, smartParkingBoy.fetch(ticket2));
     }
 
 
