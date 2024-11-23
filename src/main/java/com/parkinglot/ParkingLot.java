@@ -22,7 +22,7 @@ public class ParkingLot {
     }
 
     public boolean hasAvailablePosition() {
-        return ticketToCar.size() < capacity;
+        return getRemainingCapacity() > 0;
     }
 
     public Car fetch(Ticket ticket) throws Exception {
