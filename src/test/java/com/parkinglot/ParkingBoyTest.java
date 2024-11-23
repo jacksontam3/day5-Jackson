@@ -104,7 +104,7 @@ public class ParkingBoyTest {
 
         // When & Then
         Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(new Car()));
-        assertEquals("No available position", exception.getMessage());
+        assertEquals(NO_AVAILABLE_POSITION, exception.getMessage());
     }
 
     @Test
@@ -162,6 +162,24 @@ public class ParkingBoyTest {
         assertEquals(9, parkingLot1.getRemainingCapacity());
         assertEquals(10, parkingLot2.getRemainingCapacity());
         assertEquals(car, parkingBoy.fetch(ticket));
+    }
+
+    @Test
+    void should_fetch_cars_from_both_parking_lots() throws Exception {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
+        // Park one car in each parking lot
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+
+        // Then
+        assertEquals(car1, parkingBoy.fetch(ticket1));
+        assertEquals(car2, parkingBoy.fetch(ticket2));
     }
 
 
