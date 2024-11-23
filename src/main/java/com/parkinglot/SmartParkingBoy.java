@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy {
@@ -17,7 +18,7 @@ public class SmartParkingBoy {
 
         ParkingLot targetParkingLot = parkingLots.stream()
                 .filter(ParkingLot::hasAvailablePosition)
-                .max((lot1, lot2) -> Integer.compare(lot1.getRemainingCapacity(), lot2.getRemainingCapacity()))
+                .max(Comparator.comparingInt(ParkingLot::getRemainingCapacity))
                 .orElseThrow(NoAvailablePositionException::new);
 
         return targetParkingLot.park(car);
