@@ -16,7 +16,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
         Car car = new Car();
         //When
         Ticket ticket = parkingBoy.park(car);
@@ -30,7 +30,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         //When
@@ -45,7 +45,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         Car car2 = new Car();
@@ -64,7 +64,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         Ticket ticket1 = new Ticket();
@@ -80,7 +80,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         Car fetchedCar = parkingBoy.fetch(ticket);
@@ -96,7 +96,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
 
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
 
         for (int i = 0; i < 20; i++) {
             parkingBoy.park(new Car());
@@ -112,7 +112,7 @@ public class ParkingBoyTest {
         // Given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new DefaultParkingStrategy());
 
         for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());
@@ -125,6 +125,22 @@ public class ParkingBoyTest {
         // Then
         assertNotNull(ticketForSecondLot);
         assertEquals(carInSecondLot, parkingBoy.fetch(ticketForSecondLot));
+    }
+
+    @Test
+    void should_park_in_parking_lot_with_most_available_positions_when_using_smart_strategy() throws Exception {
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), new SmartParkingStrategy());
+
+        // When
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+
+        // Then
+        assertEquals(9, parkingLot1.getRemainingCapacity());
+        assertEquals(10, parkingLot2.getRemainingCapacity());
     }
 
 
