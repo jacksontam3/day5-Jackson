@@ -35,8 +35,12 @@ public class ParkingLot {
         return capacity - ticketToCar.size();
     }
 
+    public boolean hasTicket(Ticket ticket) {
+        return ticketToCar.containsKey(ticket);
+    }
+
     public void validateTicket(Ticket ticket) throws Exception {
-        if (ticket == null || ticket.isUsed() || !ticketToCar.containsKey(ticket)) {
+        if (ticket == null || ticket.isUsed() || !hasTicket(ticket)) {
             throw new UnrecognizedParkingTickerException();
         }
     }
