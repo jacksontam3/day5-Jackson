@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.Exception.NoAvailablePositionException;
+
 import java.util.List;
 
 public class DefaultParkingStrategy implements ParkingStrategy {

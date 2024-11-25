@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.Exception.UnrecognizedParkingTickerException;
+
 import java.util.List;
 
 public class ParkingBoy {

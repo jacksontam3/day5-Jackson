@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.Exception.NoAvailablePositionException;
+import com.parkinglot.Exception.UnrecognizedParkingTickerException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
