@@ -1,12 +1,13 @@
 package com.parkinglot;
 
-import com.parkinglot.Exception.UnrecognizedParkingTickerException;
+import com.parkinglot.exception.UnrecognizedParkingTickerException;
 
 import java.util.List;
 
+import static com.parkinglot.common.constant.PARKING_LOTS_CANNOT_BE_NULL_OR_EMPTY;
+
 public class ParkingBoy {
 
-    public static final String PARKING_LOTS_CANNOT_BE_NULL_OR_EMPTY = "Parking lots cannot be null or empty.";
     protected List<ParkingLot> parkingLots;
     private final ParkingStrategy parkingStrategy;
 

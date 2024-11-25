@@ -1,7 +1,9 @@
 package com.parkinglot;
 
-import com.parkinglot.Exception.NoAvailablePositionException;
-import com.parkinglot.Exception.UnrecognizedParkingTickerException;
+import com.parkinglot.exception.NoAvailablePositionException;
+import com.parkinglot.exception.UnrecognizedParkingTickerException;
+import static com.parkinglot.common.constant.NO_AVAILABLE_POSITION;
+import static com.parkinglot.common.constant.UNRECOGNIZED_PARKING_TICKET;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
 
-    public static final String NO_AVAILABLE_POSITION = "No available position";
-    public static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket";
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach

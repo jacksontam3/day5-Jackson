@@ -1,6 +1,6 @@
 package com.parkinglot;
 
-import com.parkinglot.Exception.NoAvailablePositionException;
+import com.parkinglot.exception.NoAvailablePositionException;
 
 import java.util.Comparator;
 import java.util.List;
